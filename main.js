@@ -2,10 +2,16 @@ const user = document.querySelectorAll('.name');
 const btn = document.querySelector('.sign__buttons');
 const userImage = document.querySelector('.choose__img-user');
 const computerImage = document.querySelector('.choose__img-computer');
+const computerScore = document.querySelector('.computer__score');
+const drawScore = document.querySelector('.draw__score');
+const userScore = document.querySelector('.user__score');
 
 let userName;
 let userChoose;
 let signComputer;
+let userPoint = 0;
+let draw = 0;
+let computerPoint = 0;
 
 let signComputerArray = ['Rock', 'Paper', 'Scissors'];
 const signArray = [{
@@ -62,6 +68,19 @@ function chooseComputer(array) {
 
 function addImage(player, link) {
     player.src = link;
+};
+
+function countResult() {
+    if (userChoose === signComputer) {
+        draw += 1;
+        showResult(drawScore, draw);
+    } else if (userChoose === 'Paper' && signComputer === 'Rock' || userChoose === 'Scissors' && signComputer === 'Paper' || userChoose === 'Rock' && signComputer === 'Scissors') {
+        userPoint += 1;
+        showResult(userScore, userPoint)
+    } else {
+        computerPoint += 1;
+        showResult(computerScore, computerPoint)
+    }
 };
 
 function showResult(player, point) {
